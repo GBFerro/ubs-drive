@@ -94,7 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch((error) => {
         fileList.innerHTML =
-          '<p id="errorMessage">Erro ao carregar a lista de arquivos.</p>';
+          '<p id="errorMessage">Erro ao carregar a lista de arquivos.</p>' +
+          error;
       });
   }
 
