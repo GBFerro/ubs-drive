@@ -4,7 +4,7 @@ from io import BytesIO
 import pymongo
 import gridfs
 from bson import ObjectId
-from config import AWS_ACCESS_KEY, AWS_SECRET_KEY, S3_BUCKET, MONGO_URI, DATABASE_NAME, COLLECTION_NAME
+from config import MONGO_URI, DATABASE_NAME, COLLECTION_NAME
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './uploads'
