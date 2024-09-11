@@ -135,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
   fileTypeSelect.addEventListener("change", loadFiles);
 
   fileList.addEventListener("click", function (e) {
+    if (!e.target.className) return;
     // fileList: Supõe-se que seja um elemento do DOM (provavelmente uma lista de arquivos) onde os arquivos aparecem.
     // addEventListener("click", function (e)): Aqui, estamos dizendo que quando houver um clique em algum item da lista de arquivos, queremos executar a função fornecida. O objeto e (evento) contém informações sobre o que foi clicado.
     //fetch: Faz uma requisição HTTP para o servidor. Neste caso, está tentando baixar um arquivo.
