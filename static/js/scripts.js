@@ -102,6 +102,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Função para filtrar arquivos pelo nome e tipo
   function filterFiles(files, searchQuery, fileType) {
     return files.filter((file) => {
+      console.log("file ", file);
+      console.log("searchQuery ", searchQuery);
+      console.log("fileType ", fileType);
       const matchesName = file.filename
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
@@ -134,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Carregar arquivos ao selecionar um tipo no dropdown
   fileTypeSelect.addEventListener("change", loadFiles);
 
+  console.log(fileList);
   fileList.addEventListener("click", function (e) {
     if (!e.target.className) return;
     // fileList: Supõe-se que seja um elemento do DOM (provavelmente uma lista de arquivos) onde os arquivos aparecem.
