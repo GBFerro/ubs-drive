@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestão de Arquivos da UBS</title>
+    <link rel="stylesheet" href="../static/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gestão de Arquivos da UBS</h1>
+
+      <!-- Formulário de Upload -->
+      <div class="upload-section">
+        <h2>Upload de Arquivo</h2>
+        <form id="uploadForm">
+          <input type="file" id="fileInput" name="file" required />
+          <button type="submit">Enviar Arquivo</button>
+        </form>
+        <p id="uploadMessage"></p>
+      </div>
+
+      <!-- Barra de Pesquisa e Dropdown para Filtro -->
+      <div class="filter-section">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar por nome de arquivo"
+        />
+        <select id="fileTypeSelect">
+          <option value="">Todos os tipos</option>
+          <option value="pdf">PDF</option>
+          <option value="image">Imagens</option>
+          <option value="word">Documentos do Word</option>
+          <option value="csv">CSV</option>
+          <option value="excel">Excel</option>
+        </select>
+      </div>
+
+      <!-- Lista de Arquivos -->
+      <div class="files-section">
+        <h2>Arquivos Disponíveis</h2>
+        <div id="fileList"></div>
+      </div>
+    </div>
+
+    <script src="../static/js/script.js"></script>
+  </body>
+</html>
