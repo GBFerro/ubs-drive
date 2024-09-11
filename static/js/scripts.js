@@ -102,14 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Função para filtrar arquivos pelo nome e tipo
   function filterFiles(files, searchQuery, fileType) {
     return files.filter((file) => {
-      console.log("file ", file);
-      console.log("searchQuery ", searchQuery);
-      console.log("fileType ", fileType);
       const matchesName = file.filename
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
       const matchesType =
-        fileType === "" || file.content_type.includes(fileType);
+        fileType === "" || file.contentType.includes(fileType);
       return matchesName && matchesType;
     });
   }
@@ -137,9 +134,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Carregar arquivos ao selecionar um tipo no dropdown
   fileTypeSelect.addEventListener("change", loadFiles);
 
-  console.log(fileList);
   fileList.addEventListener("click", function (e) {
-    if (!e.target.className) return;
+    if (e.target.innerText != "Baixar") return;
     // fileList: Supõe-se que seja um elemento do DOM (provavelmente uma lista de arquivos) onde os arquivos aparecem.
     // addEventListener("click", function (e)): Aqui, estamos dizendo que quando houver um clique em algum item da lista de arquivos, queremos executar a função fornecida. O objeto e (evento) contém informações sobre o que foi clicado.
     //fetch: Faz uma requisição HTTP para o servidor. Neste caso, está tentando baixar um arquivo.

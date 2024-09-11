@@ -9,6 +9,7 @@
 # ObjectId: Utilizado para trabalhar com IDs do MongoDB, que são armazenados como objetos.
 # config: Importa configurações, como a URL do MongoDB e o nome da base de dados e coleção.
 from flask import Flask, request, jsonify, send_file, render_template
+from sqlalchemy import null
 from werkzeug.utils import secure_filename
 from io import BytesIO
 import pymongo
@@ -120,11 +121,12 @@ def list_files():
 @app.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
     try:
-        if (filename): return
-        # Baixar o arquivo do GridFS
-        file = bucket.open_download_stream_by_name(filename)
-        contents = file.read()
-        return contents
+        if (filename): 
+            # Baixar o arquivo do GridFS
+            file = bucket.open_download_stream_by_name(filename)
+            contents = file.read()
+            return contents
+        return
     except Exception as e:
         return jsonify({'error': str(e)}), 404
 
