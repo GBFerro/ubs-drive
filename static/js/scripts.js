@@ -80,10 +80,9 @@ document.addEventListener("DOMContentLoaded", function () {
               fileName.className = "file-name";
               fileName.textContent = file.filename;
 
-              const downloadLink = document.createElement("a");
-              downloadLink.href = `/download/${file.filename}`;
+              const downloadLink = document.createElement("button");
+              downloadLink.className = file.filename;
               downloadLink.textContent = "Baixar";
-              downloadLink.setAttribute("target", "_blank");
 
               fileItem.appendChild(fileIcon);
               fileItem.appendChild(fileName);
@@ -133,6 +132,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Carregar arquivos ao selecionar um tipo no dropdown
   fileTypeSelect.addEventListener("change", loadFiles);
+
+  fileList.addEventListener("click", function (e) {
+    // fileList: Supõe-se que seja um elemento do DOM (provavelmente uma lista de arquivos) onde os arquivos aparecem.
+    // addEventListener("click", function (e)): Aqui, estamos dizendo que quando houver um clique em algum item da lista de arquivos, queremos executar a função fornecida. O objeto e (evento) contém informações sobre o que foi clicado.
+    //fetch: Faz uma requisição HTTP para o servidor. Neste caso, está tentando baixar um arquivo.
+    // download/${e.target.className}: Monta a URL de download com base na className do elemento que foi clicado (e.target). Ou seja, o nome da classe do elemento clicado é usado como o nome do arquivo que queremos baixar.
+    // method: "GET": Estamos fazendo uma requisição GET ao servidor, que é apropriada para obter ou "baixar" recursos.
+    fetch(`download/${e.target.className}`, {
+      method: "GET",
+    })
+      .then((response) => response.blob())
+      .then((data) => {
+        // response.blob(): Após receber a resposta do servidor, o código converte a resposta em um blob. Um blob é um tipo de arquivo que pode ser processado como um objeto de arquivo local (imagem, texto, etc.).
+        // window.URL.createObjectURL(data): Cria uma URL temporária para o blob que acabamos de receber. Isso permite que o arquivo seja acessado no navegador como se estivesse armazenado localmente.
+        // document.createElement("a"): Cria dinamicamente um elemento de link <a>.
+        // a.style.display = "none": O link é oculto da tela para que o usuário não o veja.
+        // a.href = url: Define o link para apontar para o arquivo blob que foi baixado.
+        // a.download = e.target.className: Define o nome do arquivo que será baixado. Ele usa a classe do item clicado como o nome do arquivo.
+        // document.body.appendChild(a): O link oculto é adicionado ao corpo do documento HTML, mesmo que não seja visível.
+        // a.click(): Simula um clique no link, iniciando o download do arquivo automaticamente.
+        // window.URL.revokeObjectURL(url): Remove a URL temporária da memória do navegador para liberar espaço. Isso é importante para evitar acúmulo de URLs temporárias
+        const url = window.URL.createObjectURL(data);
+        const a = document.createElement("a");
+        a.style.display = "none";
+        a.href = url;
+        a.download = e.target.className;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+  });
 
   // Carrega a lista de arquivos quando a página é carregada
   loadFiles();
