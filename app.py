@@ -120,6 +120,7 @@ def list_files():
 @app.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
     try:
+        if (filename): return
         # Baixar o arquivo do GridFS
         file = bucket.open_download_stream_by_name(filename)
         contents = file.read()
