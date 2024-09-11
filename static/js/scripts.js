@@ -64,6 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
             fileTypeSelect.value
           );
 
+          console.log(files)
+          console.log(filteredFiles)
+
           if (filteredFiles.length === 0) {
             fileList.innerHTML =
               "<p>Nenhum arquivo corresponde aos filtros.</p>";
