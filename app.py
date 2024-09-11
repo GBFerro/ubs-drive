@@ -14,6 +14,7 @@ app.config['UPLOAD_FOLDER'] = './uploads'
 client = pymongo.MongoClient(MONGO_URI)
 db = client[DATABASE_NAME]
 collection = db[COLLECTION_NAME]
+bucket = gridfs.GridFSBucket(db)
 fs = gridfs.GridFS(db)
 
 # Rota para a página principal
