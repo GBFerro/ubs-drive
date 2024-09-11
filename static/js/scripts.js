@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
               "<p>Nenhum arquivo corresponde aos filtros.</p>";
           } else {
             filteredFiles.forEach((file) => {
-              console.log(file)
               const fileItem = document.createElement("div");
               fileItem.className = "file-item";
 
