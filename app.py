@@ -79,7 +79,7 @@ def list_files():
 def download_file(filename):
     try:
         # Baixar o arquivo do GridFS
-        file = bucket.open_download_stream_by_name("my_file")
+        file = bucket.open_download_stream_by_name(filename)
         contents = file.read()
         return contents
     except Exception as e:
