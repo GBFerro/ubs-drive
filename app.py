@@ -78,9 +78,9 @@ def list_files():
 def download_file(filename):
     try:
         # Baixar o arquivo do GridFS
-        file_id = ObjectId(file_id)
-        file = fs.get(file_id)
-        return send_file(BytesIO(file.read()), attachment_filename=file.filename, mimetype=file.content_type)
+        file = bucket.open_download_stream_by_name("my_file")
+        contents = file.read()
+        return contents
     except Exception as e:
         return jsonify({'error': str(e)}), 404
 
