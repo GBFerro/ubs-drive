@@ -64,20 +64,18 @@ document.addEventListener("DOMContentLoaded", function () {
             fileTypeSelect.value
           );
 
-          console.log(files)
-          console.log(filteredFiles)
-
           if (filteredFiles.length === 0) {
             fileList.innerHTML =
               "<p>Nenhum arquivo corresponde aos filtros.</p>";
           } else {
             filteredFiles.forEach((file) => {
+              console.log(file)
               const fileItem = document.createElement("div");
               fileItem.className = "file-item";
 
               const fileIcon = document.createElement("div");
               fileIcon.className = "file-icon";
-              fileIcon.innerHTML = getFileIcon(file.content_type);
+              fileIcon.innerHTML = getFileIcon(file.contentType);
 
               const fileName = document.createElement("div");
               fileName.className = "file-name";
