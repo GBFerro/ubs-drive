@@ -8,4 +8,4 @@ import os
 # Configurações do MongoDB
 MONGO_URI = os.environ.get('MONGO_URI')  # URL da conexão do MongoDB
 DATABASE_NAME = 'ubs_files'
-COLLECTION_NAME = 'files_metadata'
+COLLECTION_NAME = 'fs.files'
