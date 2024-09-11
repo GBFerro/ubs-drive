@@ -32,26 +32,29 @@ def upload_file():
         return jsonify({'error': 'Nenhum arquivo selecionado'}), 400
     
     if file:
+        try:
         # Salvando o arquivo localmente
-        filename = secure_filename(file.filename)
+            filename = secure_filename(file.filename)
         # file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         # file.save(file_path)
 
-        file_id = fs.put(file, filename=filename, content_type=file.content_type)
+            file_id = fs.put(file, filename=filename, content_type=file.content_type)
         
         # Enviando o arquivo para o AWS S3
         # s3.upload_file(file_path, S3_BUCKET, filename)
 
         # Salvando metadados no MongoDB
-        file_metadata = {
-            "filename": filename,
-            "content_type": file.content_type,
-            "file_id": file_id
-        }
+            file_metadata = {
+                "filename": filename,
+                "content_type": file.content_type,
+                "file_id": file_id
+            }
 
-        db.files_metadata.insert_one(file_metadata)
+            db.files_metadata.insert_one(file_metadata)
 
-        return jsonify({'message': 'Arquivo enviado com sucesso!', 'file_url': file_metadata['s3_url']}), 201
+            return jsonify({'message': 'Arquivo enviado com sucesso!', 'file_name': file_metadata['filename']}), 201
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
 
 # Rota para listar e filtrar arquivos
 @app.route('/files', methods=['GET'])
