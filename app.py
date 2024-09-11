@@ -8,13 +8,10 @@
 # pymongo e gridfs: Usamos para conectar e trabalhar com o banco de dados MongoDB e para armazenar arquivos grandes usando GridFS.
 # ObjectId: Utilizado para trabalhar com IDs do MongoDB, que são armazenados como objetos.
 # config: Importa configurações, como a URL do MongoDB e o nome da base de dados e coleção.
-from flask import Flask, request, jsonify, send_file, render_template
-from sqlalchemy import null
+from flask import Flask, request, jsonify, render_template
 from werkzeug.utils import secure_filename
-from io import BytesIO
 import pymongo
 import gridfs
-from bson import ObjectId
 from config import MONGO_URI, DATABASE_NAME, COLLECTION_NAME
 
 #================================================================================================================================================================================================================
