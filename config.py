@@ -6,6 +6,6 @@ import os
 #S3_BUCKET = os.environ('S3_BUCKET')
 
 # Configurações do MongoDB
-MONGO_URI = os.environ('MONGO_URI')  # URL da conexão do MongoDB
+MONGO_URI = os.environ.get('MONGO_URI')  # URL da conexão do MongoDB
 DATABASE_NAME = 'ubs_files'
 COLLECTION_NAME = 'files_metadata'
